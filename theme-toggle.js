@@ -61,9 +61,9 @@ class ThemeToggle {
         :root {
           --bg: #f8fafc;
           --card: #ffffff;
-          --muted: #64748b;
-          --text: #1e293b;
-          --glass: rgba(0,0,0,0.03);
+          --muted: #475569; /* slate-600 for better contrast */
+          --text: #0f172a;  /* slate-900 stronger body text */
+          --glass: rgba(0,0,0,0.05); /* stronger separation on light */
         }
         
         html, body {
@@ -77,7 +77,7 @@ class ThemeToggle {
           background: rgba(0,0,0,0.01);
           background-image: linear-gradient(180deg, rgba(0,0,0,0.02), rgba(0,0,0,0.01));
           background-attachment: local;
-          box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+          box-shadow: 0 8px 30px rgba(0,0,0,0.12);
         }
         
         .card {
@@ -86,14 +86,43 @@ class ThemeToggle {
           background-attachment: local;
         }
         
+        /* Buttons and toggles: stronger borders/colors for contrast */
+        button, .toggle, .toolbar-button, .theme-toggle {
+          color: var(--text);
+          background: var(--glass);
+          border: 1px solid rgba(0,0,0,0.12);
+        }
+        button:hover, .toggle:hover, .toolbar-button:hover, .theme-toggle:hover {
+          background: rgba(0,0,0,0.08);
+        }
+        
+        /* Export dropdown and options */
+        .export-menu {
+          border-color: rgba(0,0,0,0.12);
+          background: var(--card);
+        }
+        .export-option:hover { background: rgba(0,0,0,0.04); }
+        
+        /* Legend hover contrast */
+        .legend-item:hover {
+          background: rgba(0,0,0,0.06);
+        }
+        
+        /* Table contrast on light */
+        .data-table th { background: rgba(0,0,0,0.06); }
+        .data-table tr:hover td { background: rgba(0,0,0,0.03); }
+        
+        /* Divider contrast override (inline style needs !important) */
+        hr { border-top: 1px solid rgba(0,0,0,0.08) !important; }
+        
         .social-icon {
           background: var(--glass);
-          border: 1px solid rgba(0,0,0,0.06);
+          border: 1px solid rgba(0,0,0,0.12);
           color: var(--text);
         }
         
         .social-icon:hover {
-          background: rgba(0,0,0,0.06);
+          background: rgba(0,0,0,0.08);
         }
         
         canvas {

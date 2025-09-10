@@ -301,10 +301,10 @@ const eventsPlugin = {
 function getThemeColors() {
   const isLightTheme = document.documentElement.getAttribute('data-theme') === 'light';
   return {
-    ticks: isLightTheme ? '#475569' : '#cbd5e1',
+    ticks: isLightTheme ? '#334155' : '#cbd5e1',
     grid: isLightTheme ? 'rgba(0,0,0,0.08)' : 'rgba(255,255,255,0.03)',
     tooltipBg: isLightTheme ? 'rgba(255,255,255,0.95)' : 'rgba(0,0,0,0.8)',
-    tooltipText: isLightTheme ? '#1e293b' : '#e6eef6'
+    tooltipText: isLightTheme ? '#0f172a' : '#e6eef6'
   };
 }
 
