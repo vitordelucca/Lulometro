@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content="Gráfico interativo de avaliação do Presidente Lula (05-Jul a 20-Aug) — dados Antagonista/Real Time Big Data. Exportar PNG/CSV, legendas interativas." />
+  <meta name="author" content="Vitor de Lucca" />
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Avaliação do Presidente Lula — gráfico" />
+  <meta property="og:description" content="Gráfico interativo de avaliação do Presidente Lula (05-Jul a 20-Aug) — dados Antagonista/Real Time Big Data." />
+  <meta property="og:image" content="https://repository-images.githubusercontent.com/placeholder-lula-chart.png" />
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image" />
+  <meta property="twitter:title" content="Avaliação do Presidente Lula — gráfico" />
+  <meta property="twitter:description" content="Gráfico interativo de avaliação do Presidente Lula (05-Jul a 20-Aug) — dados Antagonista/Real Time Big Data." />
+  <meta property="twitter:image" content="https://repository-images.githubusercontent.com/placeholder-lula-chart.png" />
+  
+  <title>Avaliação do Presidente Lula — gráfico</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" href="icon-192.png" sizes="192x192" type="image/png">
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div>
+        <h1>Avaliação do Presidente Lula — pesquisa diária</h1>
+        <p class="lead">Gráfico interativo — tracking de 05-Jul a 20-Aug — Fonte: Antagonista/Real Time Big Data</p>
+      </div>
+      <div class="controls">
+        <div class="toolbar">
+          <button id="reset" aria-label="Resetar gráfico">Resetar</button>
+          <button id="analytics-toggle" class="toolbar-button">Mostrar Análise</button>
+          <button id="ma-toggle" class="toolbar-button" aria-pressed="false">Médias Móveis</button>
+          <button id="pred-toggle" class="toolbar-button" aria-pressed="false">Previsões</button>
+          <button id="events-toggle" class="toolbar-button" aria-pressed="false">Eventos</button>
+        </div>
+      </div>
+    </header>
+
+    <div class="content">
+      <div class="card">
+        <canvas id="chart" role="img" aria-label="Gráfico de avaliação do Presidente Lula"></canvas>
+        <footer>Passar o mouse para ver valores. Clique nas legendas para esconder/mostrar séries.</footer>
+      </div>
+
+      <aside class="card" style="height:100%">
+        <h2 style="margin-top:0">Legendas & Ações</h2>
+        <div style="margin-top:12px">
+          <button type="button" class="legend-item button-reset" role="button" aria-pressed="true" data-ds="0" tabindex="0">
+            <div class="swatch" style="background:linear-gradient(180deg,var(--accent1), #c32a4f)"></div>
+            <div>
+              <strong>Ruim / Péssimo</strong>
+              <div class="muted">Tendência de variação</div>
+            </div>
+          </button>
+          <button type="button" class="legend-item button-reset" role="button" aria-pressed="true" data-ds="1" tabindex="0">
+            <div class="swatch" style="background:linear-gradient(180deg,var(--accent2), #e6b73b)"></div>
+            <div>
+              <strong>Regular</strong>
+              <div class="muted">Tendência de variação</div>
+            </div>
+          </button>
+          <button type="button" class="legend-item button-reset" role="button" aria-pressed="true" data-ds="2" tabindex="0">
+            <div class="swatch" style="background:linear-gradient(180deg,var(--accent3), #04b883)"></div>
+            <div>
+              <strong>Ótimo / Bom</strong>
+              <div class="muted">Tendência de variação</div>
+            </div>
+          </button>
+        </div>
+
+        <hr style="border:none;border-top:1px solid rgba(255,255,255,0.03);margin:14px 0">
+        <div class="muted">Sugestões</div>
+         <ul class="muted" style="padding-left:18px;margin-top:8px">
+          <li>Clique nas legendas para esconder/mostrar séries</li>
+          <li>Baixe o gráfico em PNG ou a tabela em CSV</li>
+        </ul>
+        <div class="muted" style="margin-top:10px">Feito por: <strong>Vitor de Lucca</strong></div>
+        <div style="margin-top:10px" class="social">
+          <a href="https://x.com/vitor_dlucca" target="_blank" rel="noopener" aria-label="X: @vitor_dlucca" title="X: @vitor_dlucca" class="social-icon">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true">
+              <path d="M18.146 3H21l-6.64 7.59L22.5 21h-6.09l-4.77-5.52L5.96 21H3l7.1-8.12L1.8 3h6.23l4.32 4.92L18.146 3Z"/>
+            </svg>
+          </a>
+          <a href="https://instagram.com/vitor_dlucca" target="_blank" rel="noopener" aria-label="Instagram: @vitor_dlucca" title="Instagram: @vitor_dlucca" class="social-icon">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true">
+              <path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5Zm0 2a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3H7Zm5 3.5A5.5 5.5 0 1 1 6.5 13 5.5 5.5 0 0 1 12 7.5Zm0 2A3.5 3.5 0 1 0 15.5 13 3.5 3.5 0 0 0 12 9.5Zm6.25-3.5a1.25 1.25 0 1 1-1.25 1.25A1.25 1.25 0 0 1 18.25 6Z"/>
+            </svg>
+          </a>
+          <a href="https://telegram.me/vitordelucca" target="_blank" rel="noopener" aria-label="Telegram: @vitordelucca" title="Telegram: @vitordelucca" class="social-icon">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true">
+              <path d="M9.04 15.19 8.7 19.9c.6 0 .86-.26 1.17-.57l2.81-2.69 5.83 4.28c1.07.59 1.83.28 2.12-.99L23.9 4.53c.34-1.61-.58-2.23-1.62-1.84L1.74 10.07c-1.55.6-1.52 1.47-.26 1.86l5.6 1.75 12.98-8.19c.61-.37 1.17-.17.71.2L9.04 15.19Z"/>
+            </svg>
+          </a>
+          <a href="https://threads.com/vitor_dlucca" target="_blank" rel="noopener" aria-label="Threads: vitor_dlucca" title="Threads: vitor_dlucca" class="social-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" aria-hidden="true" shape-rendering="geometricPrecision" text-rendering="geometricPrecision" image-rendering="optimizeQuality" fill-rule="evenodd" clip-rule="evenodd" viewBox="0 0 440 511.43">
+              <path fill="#fff" fill-rule="nonzero" d="M342.383 237.038a177.282 177.282 0 00-6.707-3.046c-3.948-72.737-43.692-114.379-110.429-114.805-38.505-.255-72.972 15.445-94.454 48.041l36.702 25.178c15.265-23.159 39.221-28.096 56.864-28.096.204 0 .408 0 .61.002 21.974.14 38.555 6.529 49.287 18.987 7.81 9.071 13.034 21.606 15.621 37.425-19.483-3.311-40.553-4.329-63.077-3.038-63.45 3.655-104.24 40.661-101.501 92.08 1.391 26.083 14.385 48.523 36.587 63.181 18.772 12.391 42.95 18.45 68.077 17.079 33.183-1.819 59.215-14.48 77.377-37.63 13.793-17.58 22.516-40.363 26.368-69.069 15.814 9.544 27.535 22.103 34.007 37.2 11.006 25.665 11.648 67.84-22.764 102.223-30.15 30.121-66.392 43.151-121.164 43.554-60.758-.45-106.708-19.935-136.583-57.915-27.976-35.562-42.434-86.93-42.973-152.674.539-65.746 14.997-117.114 42.973-152.676 29.875-37.979 75.824-57.463 136.582-57.914 61.197.455 107.948 20.033 138.967 58.195 15.21 18.713 26.676 42.248 34.236 69.688L440 161.532c-9.163-33.775-23.582-62.881-43.203-87.017C357.031 25.59 298.872.519 223.936 0h-.3C148.851.518 91.344 25.683 52.709 74.795 18.331 118.499.598 179.308.002 255.535l-.002.18.002.18c.596 76.225 18.329 137.037 52.707 180.741 38.635 49.11 96.142 74.277 170.927 74.794h.3c66.486-.462 113.352-17.868 151.96-56.442 50.51-50.463 48.99-113.718 32.342-152.549-11.945-27.847-34.716-50.463-65.855-65.401zM227.587 344.967c-27.808 1.567-56.699-10.916-58.124-37.651-1.056-19.823 14.108-41.942 59.831-44.577a266.87 266.87 0 0115.422-.45c16.609 0 32.145 1.613 46.271 4.701-5.268 65.798-36.172 76.483-63.4 77.977z"/>
+            </svg>
+          </a>
+        </div>
+      </aside>
+    </div>
+  </div>
+
+  <!-- Chart.js CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+  <!-- Zoom/Pan plugin -->
+  <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-zoom@2.0.1/dist/chartjs-plugin-zoom.min.js"></script>
+  <script src="chart.js"></script>
+  
+  <!-- Service Worker Registration -->
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('./service-worker.js')
+          .then(registration => {
+            console.log('ServiceWorker registration successful with scope: ', registration.scope);
+          })
+          .catch(error => {
+            console.log('ServiceWorker registration failed: ', error);
+          });
+      });
+    }
+  </script>
+  <script src="loading.js"></script>
+  <script src="error-handler.js"></script>
+  <script src="keyboard-nav.js"></script>
+  <script src="date-filter.js"></script>
+  <script src="theme-toggle.js"></script>
+  <script src="data-table.js"></script>
+  <script src="advanced-export.js"></script>
+  <script src="advanced-analytics.js"></script>
+  <script src="chart-type-toggle.js"></script>
+</body>
+</html>

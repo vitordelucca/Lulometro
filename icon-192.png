@@ -1,0 +1,10 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Placeholder for Icon</title>
+</head>
+<body>
+  <p>This is a placeholder for the icon files that would be created in a real implementation.</p>
+  <p>In a production environment, you would create actual 192x192 and 512x512 PNG icons.</p>
+</body>
+</html>

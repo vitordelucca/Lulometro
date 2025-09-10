@@ -1,0 +1,18 @@
+{
+  "name": "lulometro",
+  "version": "1.0.0",
+  "description": "Gráfico interativo de avaliação do Presidente Lula",
+  "main": "index.html",
+  "scripts": {
+    "start": "npx serve .",
+    "build": "npx terser chart.js -o chart.min.js && npx csso styles.css -o styles.min.css",
+    "test": "node test-setup.js && echo 'Basic test environment setup completed'"
+  },
+  "keywords": ["chart", "lula", "approval", "rating"],
+  "author": "Vitor de Lucca",
+  "license": "MIT",
+  "devDependencies": {
+    "csso-cli": "^4.0.2",
+    "terser": "^5.19.2"
+  }
+}
