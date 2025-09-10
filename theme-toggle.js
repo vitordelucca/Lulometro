@@ -67,17 +67,23 @@ class ThemeToggle {
         }
         
         html, body {
-          background: linear-gradient(180deg, #f1f5f9 0%, #e2e8f0 60%);
+          background: #f1f5f9;
+          background-image: linear-gradient(180deg, #f1f5f9 0%, #e2e8f0 60%);
+          background-attachment: fixed;
           color: var(--text);
         }
         
         .wrap {
-          background: linear-gradient(180deg, rgba(0,0,0,0.02), rgba(0,0,0,0.01));
+          background: rgba(0,0,0,0.01);
+          background-image: linear-gradient(180deg, rgba(0,0,0,0.02), rgba(0,0,0,0.01));
+          background-attachment: local;
           box-shadow: 0 8px 30px rgba(0,0,0,0.1);
         }
         
         .card {
-          background: linear-gradient(180deg, rgba(0,0,0,0.01), rgba(0,0,0,0.00));
+          background: rgba(0,0,0,0.005);
+          background-image: linear-gradient(180deg, rgba(0,0,0,0.01), rgba(0,0,0,0.00));
+          background-attachment: local;
         }
         
         .social-icon {
