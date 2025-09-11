@@ -1,12 +1,13 @@
 // Dados originais (porcentagens fornecidas)
 const labels = [
-  '05-Jul','07-Jul','08-Jul','09-Jul','10-Jul','11-Jul','12-Jul','14-Jul','15-Jul','16-Jul','17-Jul','18-Jul','19-Jul','21-Jul','22-Jul','23-Jul','24-Jul','25-Jul','28-Jul','29-Jul','30-Jul','31-Jul','01-Aug','04-Aug','05-Aug','06-Aug','07-Aug','08-Aug','11-Aug','12-Aug','13-Aug','14-Aug','15-Aug','18-Aug','19-Aug','20-Aug'
+  '05-Jul','07-Jul','08-Jul','09-Jul','10-Jul','11-Jul','12-Jul','14-Jul','15-Jul','16-Jul','17-Jul','18-Jul','19-Jul','21-Jul','22-Jul','23-Jul','24-Jul','25-Jul','28-Jul','29-Jul','30-Jul','31-Jul','01-Aug','04-Aug','05-Aug','06-Aug','07-Aug','08-Aug','11-Aug','12-Aug','13-Aug','14-Aug','15-Aug','18-Aug','19-Aug','20-Aug',
+'21-Aug','22-Aug','25-Aug','26-Aug','27-Aug','28-Aug','29-Aug','01-Sep','02-Sep','03-Sep','04-Sep','05-Sep','08-Sep','09-Sep','10-Sep'
 ];
 
 const raw = {
-  ruim:   [47,46,45,44,44,43,43,43,43,43,43,45,44,46,45,44,43,42,42,42,43,41,40,40,40,40,39,39,39,39,39,40,40,39,39,38],
-  regular:[24,26,25,26,25,25,24,24,25,25,26,24,25,26,27,27,27,28,29,30,29,28,28,29,28,28,29,29,28,28,29,27,28,27,27,28],
-  bom:    [27,26,27,27,28,28,29,30,29,28,29,28,27,26,27,27,27,28,26,25,25,28,29,29,30,30,30,29,31,31,30,31,30,32,32,32]
+  ruim:   [47,46,45,44,44,43,43,43,43,43,43,45,44,46,45,44,43,42,42,42,43,41,40,40,40,40,39,39,39,39,39,40,40,39,39,38,39,39,39,38,38,37,39,38,39,39,40,39,37,36,36],
+  regular:[24,26,25,26,25,25,24,24,25,25,26,24,25,26,27,27,27,28,29,30,29,28,28,29,28,28,29,29,28,28,29,27,28,27,27,28,26,27,27,28,27,28,29,29,30,31,31,30,29,30,29],
+  bom:    [27,26,27,27,28,28,29,30,29,28,29,28,27,26,27,27,27,28,26,25,25,28,29,29,30,30,30,29,31,31,30,31,30,32,32,32,33,32,31,32,33,33,30,31,29,28,27,29,32,32,33]
 };
 
 function padToLabels(arr){
@@ -107,9 +108,18 @@ function computeYBounds(normalize=false, stacked=true){
 
 // Events annotations (date->label). Edit as needed.
 const EVENTS = [
-  { date: '11-Jul', title: 'Evento político A' },
-  { date: '22-Jul', title: 'Notícia relevante' },
-  { date: '07-Aug', title: 'Fato marcante' }
+  { date: '09-Jul', title: 'Trump anuncia tarifa ao Brasil' },
+  { date: '17-Jul', title: 'Pronunciamento Lula: Brasil Soberano' },
+  { date: '30-Jul', title: 'EUA sanciona Moraes' },
+  { date: '04-Aug', title: 'Prisão domiciliar a Bolsonaro' },
+  { date: '06-Aug', title: 'Tarifa entra em vigor' },
+  { date: '12-Aug', title: 'IPCA 0,26%' },
+  { date: '28-Aug', title: 'Operação PCC' },
+  { date: '02-Sep', title: 'Julgamento Bolsonaro' },
+  { date: '04-Sep', title: 'Gás do Povo' },
+  { date: '06-Sep', title: 'Pronunciamento Lula: Independência' },
+  { date: '07-Sep', title: 'Protesto pela anistia' },
+  { date: '10-Sep', title: 'IPCA -0,11' }
 ];
 
 // UI feature flags
@@ -264,7 +274,7 @@ const eventsPlugin = {
     ctx.save();
     ctx.strokeStyle = isLightTheme ? 'rgba(0,0,0,0.15)' : 'rgba(255,255,255,0.15)';
     ctx.fillStyle = isLightTheme ? '#1e293b' : '#e6eef6';
-    ctx.font = '600 11px Inter, Arial, sans-serif';
+    ctx.font = '600 10px Inter, Arial, sans-serif';
     ctx.textBaseline = 'top';
     EVENTS.forEach((ev, index) => {
       const idx = currentLabels.indexOf(ev.date);
