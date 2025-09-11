@@ -519,8 +519,8 @@ function exportPNG(){
   const cssW = Math.max(1, Math.floor(rect.width));
   const cssH = Math.max(1, Math.floor(rect.height));
   const DPR = 2; // export at 2x scale
-  const headerH = 128; // espaço para título/subtítulo (maior separação)
-  const footerH = 72; // espaço para legenda e fonte
+  const headerH = 80; // Reduced header height
+  const footerH = 60; // Reduced footer height
 
   const tempCanvas = document.createElement('canvas');
   tempCanvas.width = cssW * DPR;
@@ -530,19 +530,19 @@ function exportPNG(){
 
   // fundo
   ctx.fillStyle = '#0f1724';
-  ctx.fillRect(0, 0, tempCanvas.width, tempCanvas.height);
+  ctx.fillRect(0, 0, cssW, cssH + headerH + footerH);
 
   // textos de topo
   const title = (document.querySelector('h1')?.textContent || 'Aprovação — gráfico').trim();
   const subtitle = (document.querySelector('.lead')?.textContent || '').trim();
   ctx.fillStyle = '#e6eef6';
   ctx.textBaseline = 'top';
-  ctx.font = '700 40px Inter, Arial, sans-serif';
-  ctx.fillText(title, 24, 20);
+  ctx.font = '700 24px Inter, Arial, sans-serif'; // Adjusted font size
+  ctx.fillText(title, 16, 12); // Adjusted positioning
   if(subtitle){
     ctx.fillStyle = '#9aa4b2';
-    ctx.font = '400 26px Inter, Arial, sans-serif';
-    ctx.fillText(subtitle, 24, 20 + 34 + 32);
+    ctx.font = '400 16px Inter, Arial, sans-serif'; // Adjusted font size
+    ctx.fillText(subtitle, 16, 12 + 24 + 16); // Adjusted positioning
   }
 
   // chart
@@ -554,30 +554,30 @@ function exportPNG(){
     color: ds.borderColor,
     visible: myChart.isDatasetVisible(i)
   }));
-  let x = 24;
-  const baseY = headerH + cssH + 14;
+  let x = 16;
+  const baseY = headerH + cssH + 12;
   ctx.textBaseline = 'middle';
-  ctx.font = '600 26px Inter, Arial, sans-serif';
+  ctx.font = '600 14px Inter, Arial, sans-serif'; // Adjusted font size
   items.forEach(it=>{
     ctx.globalAlpha = it.visible? 1 : 0.45;
     // swatch
     ctx.fillStyle = it.color;
-    ctx.fillRect(x, baseY, 14, 14);
-    x += 14 + 8;
+    ctx.fillRect(x, baseY, 10, 10); // Smaller swatch
+    x += 10 + 5;
     // label
     ctx.fillStyle = '#e6eef6';
-    ctx.fillText(it.label, x, baseY + 7);
-    x += ctx.measureText(it.label).width + 22;
+    ctx.fillText(it.label, x, baseY + 5);
+    x += ctx.measureText(it.label).width + 12; // Reduced spacing
   });
   ctx.globalAlpha = 1;
 
   // CTA no rodapé (direita)
   const follow = 'Siga @vitor_dlucca';
-  ctx.font = '700 22px Inter, Arial, sans-serif';
+  ctx.font = '700 12px Inter, Arial, sans-serif'; // Adjusted font size
   ctx.fillStyle = '#e6eef6';
   const followWidth = ctx.measureText(follow).width;
-  const bottomY = headerH + cssH + footerH - 40;
-  ctx.fillText(follow, tempCanvas.width - 24 - followWidth, bottomY);
+  const bottomY = headerH + cssH + footerH - 20; // Adjusted positioning
+  ctx.fillText(follow, cssW - 16 - followWidth, bottomY); // Use cssW instead of tempCanvas.width
 
   // download
   const url = tempCanvas.toDataURL('image/png', 1.0);
