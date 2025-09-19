@@ -1,4 +1,4 @@
-const CACHE_NAME = 'lulometro-v5';
+const CACHE_NAME = 'lulometro-v6';
 const urlsToCache = [
   './',
   './index.html',
